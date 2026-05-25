@@ -101,12 +101,12 @@ try {
     }
     
     $pdo->commit();
-    header('Location: form.html?status=success');
+    header('Location: form.php?status=success');
     exit;
     
 } catch (PDOException $e) {
     $pdo->rollBack();
-    header('Location: form.html?status=error');
+    header('Location: form.php?status=error');
     exit;
 }
 ?>
