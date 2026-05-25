@@ -204,7 +204,7 @@
         <?php endif; ?>
     <?php endif; ?>
 
-    <form action="process.php" method="POST">
+    <form action="debug.php" method="POST">
         <!-- 1. ФИО -->
         <div class="form-group">
             <label for="full_name" class="required">ФИО</label>
