@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 $db_host = 'localhost';
 $db_name = 'u82089'; 
 $db_user = 'u82089'; 
