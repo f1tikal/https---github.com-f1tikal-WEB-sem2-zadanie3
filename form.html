@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анкета разработчика</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e9ecef;
+            margin: 0;
+            padding: 20px;
+            color: #495057;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #343a40;
+            margin-bottom: 10px;
+        }
+        .description {
+            text-align: center;
+            color: #6c757d;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        input[type="date"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        textarea {
+            resize: vertical;
+        }
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .radio-group label {
+            display: inline-flex;
+            align-items: center;
+            font-weight: normal;
+            margin-bottom: 0;
+            gap: 6px;
+        }
+        select[multiple] {
+            height: auto;
+            min-height: 120px;
+        }
+        .checkbox-group {
+            margin-top: 15px;
+        }
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 18px;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .error-message {
+            color: #dc3545;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 6px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .success-message {
+            color: #28a745;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 6px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        hr {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Регистрационная анкета</h1>
+    <div class="description">Заполните форму, чтобы стать частью нашего IT-сообщества</div>
+
+
+    <?php if (isset($_GET['status'])): ?>
+        <?php if ($_GET['status'] === 'success'): ?>
+            <div class="success-message">Данные успешно сохранены!</div>
+        <?php elseif ($_GET['status'] === 'error'): ?>
+            <div class="error-message">Произошла ошибка при сохранении данных. Пожалуйста, попробуйте снова.</div>
+        <?php endif; ?>
+    <?php endif; ?>
+
+    <form action="process.php" method="POST">
+        <div class="form-group">
+            <label for="full_name">1. ФИО:</label>
+            <input type="text" id="full_name" name="full_name" maxlength="150" required>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">2. Телефон:</label>
+            <input type="tel" id="phone" name="phone" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">3. E-mail:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-group">
+            <label for="birth_date">4. Дата рождения:</label>
+            <input type="date" id="birth_date" name="birth_date" required>
+        </div>
+
+        <div class="form-group">
+            <label>5. Пол:</label>
+            <div class="radio-group">
+                <label><input type="radio" name="gender" value="male" required> Мужской</label>
+                <label><input type="radio" name="gender" value="female"> Женский</label>
+                <label><input type="radio" name="gender" value="other"> Другой</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="languages">6. Любимый язык программирования:</label>
+            <select name="languages[]" id="languages" multiple required>
+                <option value="1">Pascal</option>
+                <option value="2">C</option>
+                <option value="3">C++</option>
+                <option value="4">JavaScript</option>
+                <option value="5">PHP</option>
+                <option value="6">Python</option>
+                <option value="7">Java</option>
+                <option value="8">Haskell</option>
+                <option value="9">Clojure</option>
+                <option value="10">Prolog</option>
+                <option value="11">Scala</option>
+                <option value="12">Go</option>
+            </select>
+            <small>Удерживайте Ctrl для выбора нескольких языков</small>
+        </div>
+
+        <div class="form-group">
+            <label for="bio">7. Биография:</label>
+            <textarea id="bio" name="bio" rows="5" required></textarea>
+        </div>
+
+        <div class="form-group checkbox-group">
+            <label>
+                <input type="checkbox" name="agreement" value="1" required>
+                8. Я ознакомлен(а) с контрактом и согласен(на)
+            </label>
+        </div>
+
+        <button type="submit" class="btn">9. Сохранить</button>
+    </form>
+</div>
+</body>
+</html>
